@@ -1,18 +1,20 @@
-import express from "express"
-import userRoutes from "./routes/userRoutes.js"
+import express from "express";
+import userRoutes from "./routes/userRoutes.js";
+import dotenv from "dotenv";
 
-const app = express()
-const PORT = 8000
+dotenv.config();
 
+const app = express();
+const PORT = 8000;
 
-app.use(express.json())
+app.use(express.json());
 
-app.get("/" , (req, res) => {
-    res.send("This is nikhil")
-})
+app.use("/user", userRoutes);
 
-app.use("/users" , userRoutes)
+app.get("/", (req, res) => {
+  res.send("Nikhil is testing");
+});
 
-app.listen(PORT , () => {
-    console.log(`Server is listining on ${PORT}`)
-})
+app.listen(PORT, () => {
+  console.log(`Server is listeing on port ${PORT}`);
+});
